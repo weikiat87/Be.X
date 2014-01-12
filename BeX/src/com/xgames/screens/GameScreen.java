@@ -3,6 +3,7 @@ package com.xgames.screens;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Music;
@@ -249,16 +250,20 @@ public class GameScreen extends AbstractScreen
 			@Override
             public boolean keyDown(int keycode) 
             {
-				pause.toggle();
-				Global.isPaused = !Global.isPaused;
+				if(keycode == Input.Keys.MENU)
+				{
+					Global.isPaused = !Global.isPaused;	
+				}
 				if(Global.isPaused)
 				{
+					pause.toggle();	
 					music.pause();
 					stage.addActor(paused);
 					sequence.setBellsNotesVisiblity(false);
 				}
 				else
 				{
+					pause.toggle();
 					SoundManager.play(music);
 					sequence.setBellsNotesVisiblity(true);
 					paused.remove();

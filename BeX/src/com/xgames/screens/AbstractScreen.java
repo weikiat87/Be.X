@@ -80,6 +80,7 @@ public class AbstractScreen implements Screen
 	                switch(screenType)
 	                {
 	                case game:	
+	                	if(!Global.isPaused) Global.isPaused = true;
 	                	stage.addAction( sequence(fadeOut( 0.75f ),
 	                			new Action() 
 	                	{
@@ -97,6 +98,10 @@ public class AbstractScreen implements Screen
 	                case menu:				Gdx.app.exit();							break;
 					default:				/*Not Used*/							break;
 	                }
+                }
+                else if( (keycode == Input.Keys.VOLUME_DOWN) || (keycode == Input.Keys.VOLUME_UP) )
+                {
+                	return true;
                 }
                 return false;
             }
